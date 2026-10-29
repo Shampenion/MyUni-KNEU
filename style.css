@@ -1,20 +1,53 @@
 :root {
-    --primary-color: #4361ee; --primary-hover: #3a56d4; --bg-color: #f4f7fe; --sidebar-bg: #ffffff;
-    --text-main: #2b3674; --text-muted: #a3aed1; --card-bg: #ffffff; --border-color: #e2e8f0;
-    --danger: #ef476f; --success: #06d6a0; --warning: #f59e0b;
-    --seminar-bg: #ffe8e8; --seminar-text: #d90429;
-    --transition: all 0.3s ease; --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    color-scheme: light dark;
+    --primary-color: #4361ee; 
+    --primary-hover: #3a56d4; 
+    --bg-color: #f4f7fe; 
+    --sidebar-bg: #ffffff;
+    --text-main: #2b3674; 
+    --text-muted: #a3aed1; 
+    --card-bg: #ffffff; 
+    --border-color: #e2e8f0;
+    --danger: #ef476f; 
+    --success: #06d6a0; 
+    --warning: #f59e0b;
+    --seminar-bg: #ffe8e8; 
+    --seminar-text: #d90429;
+    --transition: all 0.3s ease; 
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] {
-    --bg-color: #0b1437; --sidebar-bg: #111c44; --text-main: #ffffff; --text-muted: #8f9bba;
-    --card-bg: #111c44; --border-color: #2b3674; --seminar-bg: #3d1421; --seminar-text: #ff4d6d;
+    color-scheme: dark;
+    forced-color-adjust: none;
+    -webkit-forced-color-adjust: none;
+    --bg-color: #0b1437; 
+    --sidebar-bg: #111c44; 
+    --text-main: #ffffff; 
+    --text-muted: #8f9bba;
+    --card-bg: #111c44; 
+    --border-color: #2b3674; 
+    --seminar-bg: #3d1421; 
+    --seminar-text: #ff4d6d;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Inter', sans-serif; 
+    -webkit-tap-highlight-color: transparent; 
+}
 
-body { background-color: var(--bg-color); color: var(--text-main); display: flex; height: 100vh; height: 100dvh; overflow: hidden; }
+body { 
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+    display: flex; 
+    height: 100vh; 
+    height: 100dvh; 
+    overflow: hidden; 
+}
 
 /* Layout & Helpers */
 .app-container { display: flex; width: 100%; height: 100%; position: relative; }
@@ -114,7 +147,7 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
 .task-card.highlight { animation: highlightTask 3s ease; }
 @keyframes highlightTask { 0% { transform: scale(1.03); box-shadow: 0 0 25px rgba(67, 97, 238, 0.6); background: rgba(67, 97, 238, 0.08); } 100% { transform: scale(1); box-shadow: var(--shadow); background: var(--card-bg); } }
 
-/* Верхня частина картки росте, нижня (мета + кнопки) завжди внизу */
+/* Верхня частина картки росте, нижня завжди внизу */
 .task-card-top { display: flex; flex-direction: column; flex: 1; }
 .task-card-bottom { margin-top: auto; }
 
@@ -155,7 +188,7 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
     white-space: nowrap;
 }
 
-/* Заголовок: до 3 рядків, без обрізання посередині слова */
+/* Заголовок: до 3 рядків */
 .task-card-title {
     font-size: 16px;
     font-weight: 700;
@@ -218,7 +251,6 @@ body { background-color: var(--bg-color); color: var(--text-main); display: flex
 .cal-day.today { background: rgba(67, 97, 238, 0.05); border: 2px solid var(--primary-color); }
 .cal-date { font-weight: 600; font-size: 12px; color: var(--text-main); text-align: right; margin-bottom: 2px; }
 .cal-task-label { color: white; font-size: 10px; padding: 2px 5px; border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; font-weight: 500; }
-/* Виконані: приглушені, без закреслення; прострочені: червона обводка */
 .cal-task-label.done { opacity: 0.45; filter: saturate(0.5); text-decoration: none; }
 .cal-task-label.over { outline: 1px solid var(--danger); outline-offset: -1px; }
 

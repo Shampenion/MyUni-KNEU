@@ -40,7 +40,7 @@ const customSubjectsList = [
     'Мікроекономіка'
 ];
 
-// Розклад по днях (відредагуй дні, час, викладачів та аудиторії під розклад друга)
+// Розклад по днях (шаблон КНЕУ)
 const scheduleDB = {
     upper: [
         { day: 'Понеділок', time: '08:00–09:20', subject: 'Філософія', type: 'Лекція', teacher: 'Викладач', room: '—', link: '' },
@@ -74,11 +74,11 @@ const allSubjectsList = [...new Set([
 ])];
 
 let state = {
-    weekType: localStorage.getItem('weekType') || 'upper',
-    tasks: JSON.parse(localStorage.getItem('tasks')) || [],
-    completedTaskIds: JSON.parse(localStorage.getItem('myCompletedTaskIds')) || [],
-    subjectData: JSON.parse(localStorage.getItem('subjectData')) || {},
-    settings: JSON.parse(localStorage.getItem('settings')) || { name: 'Студент', langGroup: '1', darkTheme: false },
+    weekType: localStorage.getItem('kneu_weekType') || 'upper',
+    tasks: JSON.parse(localStorage.getItem('kneu_tasks')) || [],
+    completedTaskIds: JSON.parse(localStorage.getItem('kneu_myCompletedTaskIds')) || [],
+    subjectData: JSON.parse(localStorage.getItem('kneu_subjectData')) || {},
+    settings: JSON.parse(localStorage.getItem('kneu_settings')) || { name: 'Студент', langGroup: '1', darkTheme: false },
     currentViewParams: null,
     uploadTarget: null,
     taskFilter: 'pending', taskSearch: '', taskSort: 'deadline',
@@ -122,11 +122,11 @@ function updateAdminUI() {
 
 // 🛡️ БЕЗПЕЧНЕ ЗБЕРЕЖЕННЯ ДАНИХ 🛡️
 function saveData() {
-    localStorage.setItem('weekType', state.weekType);
-    localStorage.setItem('tasks', JSON.stringify(state.tasks));
-    localStorage.setItem('myCompletedTaskIds', JSON.stringify(state.completedTaskIds));
-    localStorage.setItem('subjectData', JSON.stringify(state.subjectData));
-    localStorage.setItem('settings', JSON.stringify(state.settings));
+    localStorage.setItem('kneu_weekType', state.weekType);
+    localStorage.setItem('kneu_tasks', JSON.stringify(state.tasks));
+    localStorage.setItem('kneu_myCompletedTaskIds', JSON.stringify(state.completedTaskIds));
+    localStorage.setItem('kneu_subjectData', JSON.stringify(state.subjectData));
+    localStorage.setItem('kneu_settings', JSON.stringify(state.settings));
 
     if (!db) return;
 
@@ -163,11 +163,11 @@ async function loadGlobalContent() {
             const data = doc.data();
             if (Array.isArray(data.tasks)) {
                 state.tasks = data.tasks;
-                localStorage.setItem('tasks', JSON.stringify(state.tasks));
+                localStorage.setItem('kneu_tasks', JSON.stringify(state.tasks));
             }
             if (data.subjectData && Object.keys(data.subjectData).length > 0) {
                 state.subjectData = { ...state.subjectData, ...data.subjectData };
-                localStorage.setItem('subjectData', JSON.stringify(state.subjectData));
+                localStorage.setItem('kneu_subjectData', JSON.stringify(state.subjectData));
             }
         } else if (isAdmin()) {
             saveData();
